@@ -7,11 +7,7 @@ const seedProfileTheme = async (): Promise<number> => {
 
   // Seed profileTheme
   await prisma.profileTheme.create({
-    data: {
-      id: TEST_LENS_ID,
-      overviewFontStyle: "archivo",
-      publicationFontStyle: "archivoNarrow"
-    }
+    data: { id: TEST_LENS_ID, fontStyle: "bioRhyme" }
   });
 
   return 1;
