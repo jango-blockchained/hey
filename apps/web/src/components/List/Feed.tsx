@@ -18,10 +18,9 @@ let virtuosoState: any = { ranges: [], screenTop: 0 };
 
 interface FeedProps {
   id: string;
-  name: string;
 }
 
-const Feed: FC<FeedProps> = ({ id, name }) => {
+const Feed: FC<FeedProps> = ({ id }) => {
   const { fetchAndStoreViews } = useImpressionsStore();
   const { fetchAndStoreTips } = useTipsStore();
   const virtuoso = useRef<VirtuosoHandle>(null);
@@ -73,7 +72,7 @@ const Feed: FC<FeedProps> = ({ id, name }) => {
     variables: { request }
   });
 
-  const publications = publicationsData?.publications?.items;
+  const publications = publicationsData?.publications?.items || [];
 
   const onScrolling = (scrolling: boolean) => {
     if (!scrolling) {
@@ -91,12 +90,7 @@ const Feed: FC<FeedProps> = ({ id, name }) => {
     return (
       <EmptyState
         icon={<ChatBubbleBottomCenterIcon className="size-8" />}
-        message={
-          <div>
-            <b className="mr-1">{name}</b>
-            <span>has no posts yet!</span>
-          </div>
-        }
+        message="No publications found"
       />
     );
   }
